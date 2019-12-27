@@ -149,12 +149,14 @@ $(document).ready(function () {
                     required: "This field is required"
                 }
             },
-            submitHandler: function (form) {
+            submitHandler: function (form, event) {
+                event.preventDefault(); //extra added
                 $(form).ajaxSubmit({
                     type: "POST",
                     data: $(form).serialize(),
                     url: "process.php",
                     success: function () {
+                        alert("hi");
                         $('#contact :input').attr('disabled', 'disabled');
                         $('#contact').fadeTo("slow", 1, function () {
                             $(this).find(':input').attr('disabled', 'disabled');
